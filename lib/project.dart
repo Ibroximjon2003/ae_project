@@ -1,4 +1,5 @@
 import 'package:ae_project/buy_product.dart';
+import 'package:ae_project/fillials.dart';
 import 'package:ae_project/wishlist.dart';
 import 'package:flutter/material.dart';
 
@@ -75,32 +76,55 @@ class _ProjectScreenState extends State<ProjectScreen> {
   }
 }
 
-class MyCircle extends StatelessWidget {
+class MyCircle extends StatefulWidget {
   final String child;
 
-  const MyCircle({super.key, required this.child});
+  MyCircle({super.key, required this.child});
+
+  @override
+  State<MyCircle> createState() => _MyCircleState();
+}
+
+class _MyCircleState extends State<MyCircle> {
+  final List region = [
+    'assets/fergana.jpg',
+    'assets/namangan.jpg',
+    'assets/samarkand.jpg',
+    'assets/bukhara.jpg',
+    'assets/andijan.jpg',
+    'assets/tashkent.jpg',
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: Container(
-        height: 100,
-        width: 100,
-        decoration: BoxDecoration(
-          color: Colors.green,
-          shape: BoxShape.circle,
-        ),
-        child: Center(
-          child: Column(
-            children: [
-              Text('Our fillials'),
-              SizedBox(height: 30),
-              Text(
-                child,
-                style: TextStyle(fontSize: 18),
-              ),
-            ],
+    int index = 0;
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: ((context) => FillialsScreen(region: region[5]))));
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Container(
+          height: 100,
+          width: 100,
+          decoration: BoxDecoration(
+            color: Colors.green,
+            shape: BoxShape.circle,
+          ),
+          child: Center(
+            child: Column(
+              children: [
+                Text('Our fillials'),
+                SizedBox(height: 30),
+                Text(
+                  widget.child,
+                  style: TextStyle(fontSize: 18),
+                ),
+              ],
+            ),
           ),
         ),
       ),
